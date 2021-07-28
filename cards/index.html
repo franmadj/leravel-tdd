@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="wrapper">
+            <div id="cards">
+
+            </div>
+            <div id="dcc">
+                <div class="drop-area"  ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+            </div>
+            <div class="score">Attempts: <span id="attempts">0</span> / Points: <span id="points">0</span> / <span id="result"></span></div>
+            <button type="button" onclick="resetGame();">Reset</button>
+        </div>
+    </body>
+    <script>
+
+        let result = [];
+        let cardCount = 0;
+        let totalPoints = 0;
+        
+        const cardNumbers = [1, 2, 3, 4];
+        const cards = ['card1', 'card2', 'card3', 'card4'];
+        
+        const attemptsEl = document.getElementById('attempts');
+        const pointsEl = document.getElementById('points');
+        const resultScoreEl = document.getElementById('result');
+        const dropAreaEl = document.getElementsByClassName('drop-area')[0];
+        const cardsEl =document.getElementById('cards')
+        
+
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var target = ev.target;
+            if ('drop-area' != target.className)
+                target = dropAreaEl;
+            var number = ev.dataTransfer.getData("text");
+            document.getElementById(number).remove();
+            var newCard = document.createElement('div');
+            newCard.classList.add("new-card");
+            newCard.innerHTML = `<span>${number}</span>`;
+            target.innerHTML = '';
+            target.appendChild(newCard);
+            result.push(number);
+            checkScore(number)
+        }
+
+
+        
+
+        function resetGame() {
+            attempts = 0;
+            points = 0;
+            cardCount=0;
+            result = [];
+            dropAreaEl.innerHTML = '';
+            cardsEl.innerHTML = `
+            <img id="1" class="card1" draggable="true" ondragstart="drag(event)" src="images/card.png">
+            <img id="2" class="card2" draggable="true" ondragstart="drag(event)" src="images/card.png">
+            <img id="3" class="card3" draggable="true" ondragstart="drag(event)" src="images/card.png">
+            <img id="4" class="card4" draggable="true" ondragstart="drag(event)" src="images/card.png">`;
+
+            cardNumbers.sort((a, b) => 0.5 - Math.random());
+            for (let card in cards) {
+                document.getElementsByClassName(cards[card])[0].setAttribute('id', cardNumbers[card]);
+            }
+        }
+        resetGame();
+
+
+
+        function checkScore(number) {
+            cardCount++;
+            if (number == cardCount) {
+                points += 10;
+                resultScoreEl.innerHTML='<span class="correct">Correct</span>';
+
+            } else {
+                points -= 5;
+                resultScoreEl.innerHTML='<span class="incorrect">Incorrect</span>';
+            }
+            attemptsEl.innerHTML = cardCount;
+            pointsEl.innerHTML = points;
+        }
+
+
+
+
+
+
+
+
+
+
+    </script>
+    <style>
+        .wrapper{
+            width: fit-content;
+            margin: auto;
+            text-align: center;
+
+        }
+        .score{
+            padding: 10px 0;
+        }
+        .correct{
+            color:greenyellow;
+        }
+        .incorrect{
+            color:red;
+        }
+        #cards{
+            width: 100%;
+            height: 134px;
+
+        }
+        #dcc{
+            background-image: url(images/dcc.png);
+            width:400px;
+            height:400px;
+            position: relative;
+        }
+        #dcc .drop-area{
+
+            position: absolute;
+            width: 180px;
+            height: 183px;
+            left: 111px;
+            top: 188px;
+        }
+        .new-card{
+            background-image: url(images/card.png);
+            width:85px;
+            height:130px;
+            text-align:center;
+
+
+
+        }
+        .new-card span{
+            display: block;
+            margin: auto;
+            padding-top: 10px;
+            font-size: 42px;
+
+
+        }
+    </style>
+</html>
