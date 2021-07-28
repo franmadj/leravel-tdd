@@ -69,6 +69,9 @@ and open the template in the editor.
         function resetGame() {
             attempts = 0;
             points = 0;
+            attemptsEl.innerHTML = 0;
+            pointsEl.innerHTML = 0;
+            resultScoreEl.innerHTML='';
             cardCount=0;
             result = [];
             dropAreaEl.innerHTML = '';
