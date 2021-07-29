@@ -55,11 +55,17 @@ class CardGame {
                 <img id="2" class="card2" draggable="true" ondragstart="cardGame.drag(event)" src="assets/images/card.png">
                 <img id="3" class="card3" draggable="true" ondragstart="cardGame.drag(event)" src="assets/images/card.png">
                 <img id="4" class="card4" draggable="true" ondragstart="cardGame.drag(event)" src="assets/images/card.png">`;
+        this.shuffleCards();
 
+
+    }
+
+    shuffleCards() {
         this.cardNumbers.sort((a, b) => 0.5 - Math.random());
         for (let card in this.cards) {
             document.getElementsByClassName(this.cards[card])[0].setAttribute('id', this.cardNumbers[card]);
         }
+
     }
 
     checkScore(number) {
