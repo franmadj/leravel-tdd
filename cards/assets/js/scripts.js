@@ -1,8 +1,9 @@
 class CardGame {
 
     constructor() {
+        this.attempts = 0;
+        this.points = 0;
         this.cardCount = 0;
-        this.totalPoints = 0;
         this.cardNumbers = [1, 2, 3, 4];
         this.cards = ['card1', 'card2', 'card3', 'card4'];
         this.currentDropArea;
@@ -45,10 +46,10 @@ class CardGame {
     resetGame() {
         this.attempts = 0;
         this.points = 0;
+        this.cardCount = 0;
         this.attemptsEl.innerHTML = 0;
         this.pointsEl.innerHTML = 0;
         this.resultScoreEl.innerHTML = '';
-        this.cardCount = 0;
         this.dropAreaEl.innerHTML = '';
         this.cardsEl.innerHTML = `
                 <img id="1" class="card1" draggable="true" ondragstart="cardGame.onDragCard(event)" src="assets/images/card.png">
