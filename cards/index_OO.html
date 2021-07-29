@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" href="assets/css/styles.css">
+        
+    </head>
+    <body>
+        <div class="wrapper">
+            <div id="cards">
+
+            </div>
+            <div id="dcc">
+                <div class="drop-area" ondrop="cardGame.drop(event)" ondragover="cardGame.allowDrop(event)"></div>
+
+            </div>
+            <div class="score">Attempts: <span id="attempts">0</span> / Points: <span id="points">0</span> / <span id="result"></span></div>
+            <button type="button" onclick="cardGame.resetGame();">Reset</button>
+        </div>
+    </body>
+
+    <script type="text/javascript" async="" src="assets/js/scripts.js"></script>
+
+</html>
