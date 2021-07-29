@@ -18,11 +18,11 @@ class CardGame {
         ev.preventDefault();
     }
 
-    drag(ev) {
+    onDragCard(ev) {
         ev.dataTransfer.setData("text", ev.target.id);
     }
 
-    drop(ev) {
+    onDropCard(ev) {
         ev.preventDefault();
         this.currentDropArea = ev.target;
         if ('drop-area' != this.currentDropArea.className)
@@ -51,10 +51,10 @@ class CardGame {
         this.cardCount = 0;
         this.dropAreaEl.innerHTML = '';
         this.cardsEl.innerHTML = `
-                <img id="1" class="card1" draggable="true" ondragstart="cardGame.drag(event)" src="assets/images/card.png">
-                <img id="2" class="card2" draggable="true" ondragstart="cardGame.drag(event)" src="assets/images/card.png">
-                <img id="3" class="card3" draggable="true" ondragstart="cardGame.drag(event)" src="assets/images/card.png">
-                <img id="4" class="card4" draggable="true" ondragstart="cardGame.drag(event)" src="assets/images/card.png">`;
+                <img id="1" class="card1" draggable="true" ondragstart="cardGame.onDragCard(event)" src="assets/images/card.png">
+                <img id="2" class="card2" draggable="true" ondragstart="cardGame.onDragCard(event)" src="assets/images/card.png">
+                <img id="3" class="card3" draggable="true" ondragstart="cardGame.onDragCard(event)" src="assets/images/card.png">
+                <img id="4" class="card4" draggable="true" ondragstart="cardGame.onDragCard(event)" src="assets/images/card.png">`;
         this.shuffleCards();
 
 
